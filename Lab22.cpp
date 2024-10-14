@@ -1,8 +1,6 @@
 // COMSC-210 | Lab-22 | Jeremiah Ortiz
 #include <iostream>
 using namespace std;
-// const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
-
 
 class DoublyLinkedList {
 private:
@@ -83,63 +81,146 @@ if (temp->next) {
   delete temp;
 }
 
-void delete_pos() {
+void delete_pos(int position) {
 
+  if (!head) {
+    
+      return; 
+  }
 
+  Node* temp = head; 
+
+  for (int i = 0; i < position && temp); ++i) {
+
+    temp = temp->next; 
+  }
+
+  if (!temp) {
+
+      return; 
+  }
+
+  if (temp->prev) {
+
+      temp->prev->next = temp->next; 
+  } else {
+
+    head = temp->next; 
+  }
+
+  if (temp->next) {
+
+    temp->next->prev = temp->prev; 
+  } else {
+
+    tail = temp->prev; 
+  }
+
+  delete temp; 
 }
 
 
 
 void pop_front() {
 
+if (!head) {
+  
+  return; 
+}
 
+  Node* temp = head; 
+
+  head = head->next; 
+
+  if (!head) {
+
+    head->prev = nullptr; 
+    
+  } else {
+
+    tail = nullptr; 
+  }
+
+  delete temp;
 
 }
 
 void pop_back() {
 
+    Node* temp = tail; 
 
+    tail = tail->prev; 
+
+    if (tail) {
+
+        tail->next = nullptr; 
+    } else {
+      
+        head = nullptr; 
+    }
+  
+    delete temp;   
 } 
 
 void print() {
+  
 Node* current = head;
+  
 if (!current) return;
+  
 while (current) {
-cout << current->data << " ";
-current = current->next;
+  
+  cout << current->data << " ";
+  
+  current = current->next;
 }
+  
 cout << endl;
 }
+
 void print_reverse() {
-Node* current = tail;
-if (!current) return;
+  
+  Node* current = tail;
+  if (!current) return;
+  
 while (current) {
-cout << current->data << " ";
-current = current->prev;
+  
+  cout << current->data << " ";
+  
+  current = current->prev;
 }
-cout << endl;
+  
+  cout << endl;
 }
+
+
+
 ~DoublyLinkedList() {
-while (head) {
-Node* temp = head;
-head = head->next;
-delete temp;
+  
+  while (head) {
+    
+  Node* temp = head;
+    
+  head = head->next;
+  
+  delete temp;
+    
+  }
+  
 }
-}
+
 };
-// Driver program
+
 int main() {
-DoublyLinkedList list;
-int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
-for (int i = 0; i < size; ++i)
-list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
-cout << "List forward: ";
-list.print();
-cout << "List backward: ";
-list.print_reverse();
-cout << "Deleting list, then trying to print.\n";
-list.~DoublyLinkedList();
-cout << "List forward: ";
-list.print();
+  
+  DoublyLinkedList list;
+
+  list.push_back(10); 
+  list.push_back(20); 
+  
+  list.push_back(30);
+  list.push_bacl(40); 
+
+  
 return 0;
 }
