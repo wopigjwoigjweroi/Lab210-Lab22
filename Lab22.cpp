@@ -90,7 +90,7 @@ void delete_pos(int position) {
 
   Node* temp = head; 
 
-  for (int i = 0; i < position && temp); ++i) {
+  for (int i = 0; (i < position && temp); ++i) {
 
     temp = temp->next; 
   }
@@ -219,8 +219,39 @@ int main() {
   list.push_back(20); 
   
   list.push_back(30);
-  list.push_bacl(40); 
+  list.push_back(40); 
 
+  cout << "push_back List: ";
+  list.print();
+
+  list.pop_front();
+  
+  cout << "pop_front List: "; 
+  list.print(); 
+
+  list.pop_back(); 
+
+  cout << "pop_back List: "; 
+  list.print(); 
+
+  list.push_front(50); 
+  list.push_back(60); 
+
+  cout << "push_front & push_back List: ";
+  list.print(); 
+
+  list.delete_val(30); 
+
+  cout << "delete_val List: "; 
+  list.print(); 
+
+  list.delete_pos(1); 
+
+  cout << "delete_pos List: ";
+  list.print(); 
+
+  cout << "Reverse List: ";
+  list.print_reverse(); 
   
 return 0;
 }
