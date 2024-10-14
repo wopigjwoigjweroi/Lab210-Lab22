@@ -3,6 +3,7 @@
 using namespace std;
 
 class DoublyLinkedList {
+
 private:
 
 struct Node {
@@ -20,7 +21,9 @@ Node(int val, Node* p = nullptr, Node* n = nullptr) {
   
   next = n;
   }
+
 };
+
 Node* head;
 Node* tail;
 
@@ -29,26 +32,36 @@ Node* tail;
 DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
 void push_back(int value) {
-Node* newNode = new Node(value);
+  
+  Node* newNode = new Node(value);
+  
   if (!tail) 
 head = tail = newNode;
+    
 else {
+  
 tail->next = newNode;
 newNode->prev = tail;
 tail = newNode;
-}
+  
+  }
+  
 }
 
 void push_front(int value) {
+  
 Node* newNode = new Node(value);
   
   if (!head) 
 head = tail = newNode;
+    
 else {
-newNode->next = head;
-head->prev = newNode;
-head = newNode;
-  }
+  
+  newNode->next = head;
+  head->prev = newNode;
+  head = newNode;
+   }
+  
 }
 
 void delete_val(int value) {
@@ -83,10 +96,7 @@ if (temp->next) {
 
 void delete_pos(int position) {
 
-  if (!head) {
-    
-      return; 
-  }
+  if (!head) return; 
 
   Node* temp = head; 
 
@@ -95,10 +105,8 @@ void delete_pos(int position) {
     temp = temp->next; 
   }
 
-  if (!temp) {
-
-      return; 
-  }
+  if (!temp) return; 
+  
 
   if (temp->prev) {
 
@@ -123,10 +131,7 @@ void delete_pos(int position) {
 
 void pop_front() {
 
-if (!head) {
-  
-  return; 
-}
+if (!head) return; 
 
   Node* temp = head; 
 
@@ -146,6 +151,8 @@ if (!head) {
 }
 
 void pop_back() {
+
+  if (!tail) return; 
 
     Node* temp = tail; 
 
